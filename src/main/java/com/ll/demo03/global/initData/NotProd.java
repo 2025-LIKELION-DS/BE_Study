@@ -1,7 +1,7 @@
 package com.ll.demo03.global.initData;
 
 import com.ll.demo03.domain.article.article.entity.Article;
-import com.ll.demo03.domain.article.article.repository.ArticleRepository;
+import com.ll.demo03.domain.article.article.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
@@ -21,7 +21,7 @@ public class NotProd {
     @Lazy
     @Autowired
     private NotProd self;
-    private final ArticleRepository articleRepository;
+    private final ArticleService articleService;
 
     @Bean
     public ApplicationRunner initNotProd() {
@@ -33,33 +33,19 @@ public class NotProd {
 
     @Transactional
     public void work1() {
-        if (articleRepository.count() > 0) return;
+        if (articleService.count() > 0) return;
 
-        Article article1 = Article.builder()
-                .title("제목 1")
-                .body("내용 2")
-                .build();
-
-        Article article2 = Article.builder()
-                .title("제목 1")
-                .body("내용 2")
-                .build();
-
-        articleRepository.save(article1);
-        articleRepository.save(article2);
+        Article article1 = articleService.write("제목 1", "내용 1");
+        Article article2 = articleService.write("제목 2", "내용 2");
 
         article2.setTitle("제목!!");
 
-        articleRepository.delete(article1);
+        articleService.delete(article1);
     }
 
     @Transactional
     public void work2() {
-        Article article = articleRepository.findById(2L).get();
-        List<Article> articles = articleRepository.findAll();
-
-        articleRepository.findByIdInOrderByTitleDescIdAsc(List.of(1L, 2L));
-        articleRepository.findByTitleContaining("제목");
-        articleRepository.findByTitleAndBody("제목", "내용");
+        Article article = articleService.findById(2L).get();
+        List<Article> articles = articleService.findAll();
     }
 }
