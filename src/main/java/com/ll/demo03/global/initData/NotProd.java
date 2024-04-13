@@ -4,6 +4,7 @@ import com.ll.demo03.domain.article.article.entity.Article;
 import com.ll.demo03.domain.article.article.service.ArticleService;
 import com.ll.demo03.domain.member.member.entity.Member;
 import com.ll.demo03.domain.member.member.service.MemberService;
+import com.ll.demo03.global.exceptions.GlobalException;
 import com.ll.demo03.global.rsData.RsData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +43,12 @@ public class NotProd {
         Member member1 = memberService.join("user1", "1234", "유저 1").getData();
         Member member2 = memberService.join("user2", "1234", "유저 2").getData();
 
-        RsData<Member> joinRs = memberService.join("user2", "1234", "유저 2");
-
-        System.out.println("joinRs.getMsg() : " + joinRs.getMsg());
-        System.out.println("joinRs.getStatusCode() : " + joinRs.getStatusCode());
+        try {
+            RsData<Member> joinRs = memberService.join("user2", "1234", "유저 2");
+        } catch (GlobalException e) {
+            System.out.println("e.getMsg() : " + e.getRsData().getMsg());
+            System.out.println("e.getStatusCode() : " + e.getRsData().getStatusCode());
+        }
 
         Article article1 = articleService.write("제목 1", "내용 1").getData();
         Article article2 = articleService.write("제목 2", "내용 2").getData();
