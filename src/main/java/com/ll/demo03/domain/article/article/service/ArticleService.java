@@ -5,12 +5,14 @@ import com.ll.demo03.domain.article.article.repository.ArticleRepository;
 import com.ll.demo03.global.rsData.RsData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ArticleService {
     private final ArticleRepository articleRepository;
 
@@ -18,6 +20,7 @@ public class ArticleService {
         return articleRepository.count();
     }
 
+    @Transactional
     public RsData<Article> write(String title, String body) {
         Article article = Article
                 .builder()
@@ -30,6 +33,7 @@ public class ArticleService {
         return RsData.of("%d번 게시물이 작성되었습니다.".formatted(article.getId()), article);
     }
 
+    @Transactional
     public void delete(Article article) {
         articleRepository.delete(article);
     }
