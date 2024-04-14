@@ -1,6 +1,8 @@
-package com.ll.demo03.domain.surl.surl.repository;
+package com.ll.demo03.domain.surl.surl.service;
 
+import com.ll.demo03.domain.member.member.entity.Member;
 import com.ll.demo03.domain.surl.surl.entity.Surl;
+import com.ll.demo03.domain.surl.surl.repository.SurlRepository;
 import com.ll.demo03.global.rsData.RsData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,8 +22,9 @@ public class SurlService {
     }
 
     @Transactional
-    public RsData<Surl> add(String body, String url) {
+    public RsData<Surl> add(Member author, String body, String url) {
         Surl surl = Surl.builder()
+                .author(author)
                 .body(body)
                 .url(url)
                 .build();
