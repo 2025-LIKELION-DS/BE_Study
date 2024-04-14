@@ -1,21 +1,18 @@
 package com.ll.demo03.domain.surl.surl.entity;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import com.ll.demo03.global.jpa.entity.BaseTime;
+import jakarta.persistence.Entity;
+import lombok.*;
 
-import java.time.LocalDateTime;
+import static lombok.AccessLevel.PROTECTED;
 
+@Entity
+@NoArgsConstructor(access = PROTECTED)
+@AllArgsConstructor(access = PROTECTED)
+@Builder
 @Getter
 @Setter
-@Builder
-public class Surl {
-    private long id;
-    @Builder.Default
-    private LocalDateTime createDate = LocalDateTime.now();
-    @Builder.Default
-    private LocalDateTime modifyDate = LocalDateTime.now();
+public class Surl extends BaseTime {
     private String body;
     private String url;
     @Setter(AccessLevel.NONE)
