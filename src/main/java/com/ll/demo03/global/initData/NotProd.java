@@ -13,8 +13,6 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 // !prod == dev or test
 @Profile("!prod")
 @Configuration
@@ -41,17 +39,15 @@ public class NotProd {
         Member member1 = memberService.join("user1", "1234", "유저 1").getData();
         Member member2 = memberService.join("user2", "1234", "유저 2").getData();
 
-        Article article1 = articleService.write("제목 1", "내용 1").getData();
-        Article article2 = articleService.write("제목 2", "내용 2").getData();
+        Article article1 = articleService.write(member1, "제목 1", "내용 1").getData();
+        Article article2 = articleService.write(member1, "제목 2", "내용 2").getData();
 
-        article2.setTitle("제목!!");
-
-        articleService.delete(article1);
+        Article article3 = articleService.write(member2, "제목 1", "내용 1").getData();
+        Article article4 = articleService.write(member2, "제목 2", "내용 2").getData();
     }
 
     @Transactional
     public void work2() {
-        Article article = articleService.findById(2L).get();
-        List<Article> articles = articleService.findAll();
+
     }
 }
