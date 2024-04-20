@@ -1,7 +1,3 @@
-spring:
-  output:
-    ansi:
-      enabled: ALWAYS
 custom:
   site:
     name: "My Site Dev"
