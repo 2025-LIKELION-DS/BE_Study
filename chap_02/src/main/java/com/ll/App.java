@@ -1,0 +1,38 @@
+package com.ll;
+
+import java.util.Scanner;
+
+public class App {
+
+    private Scanner scanner;
+    private TodoController todoController;
+    private SystemController systemController;
+
+    public App() {
+        scanner = new Scanner(System.in);
+        todoController = new TodoController();
+        systemController = new SystemController();
+    }
+
+    public void run() {
+
+        while (true) {
+            System.out.print("명령: ");
+            String cmd = scanner.nextLine().trim();
+
+            if (cmd.equals("exit")) {
+                systemController.exit();
+                break;
+            } else if (cmd.equals("add")) {
+                todoController.add();
+            } else if (cmd.equals("list")) {
+                todoController.list();
+            } else if (cmd.equals("del")) {
+                todoController.delete();
+            } else if (cmd.equals("mod")) {
+                todoController.modify();
+            }
+        }
+        scanner.close();
+    }
+}
