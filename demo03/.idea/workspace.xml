@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="515bc86b-7727-44a0-acf9-200656c82db2" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ll/demo03/Surl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ll/demo03/SurlController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application-prod.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo1/src/main/java/com/ll/demo1/ComponentConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo1/src/main/java/com/ll/demo1/ComponentD.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../demo1/src/main/java/com/ll/demo1/ComponentE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chap2/src/main/java/com/ll/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chap2/src/main/java/com/ll/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chap2/src/main/java/com/ll/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chap2/src/main/java/com/ll/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chap2/src/main/java/com/ll/TodoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../chap2/src/main/java/com/ll/TodoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo1/src/main/java/com/ll/demo1/ComponentA.java" beforeDir="false" afterPath="$PROJECT_DIR$/../demo1/src/main/java/com/ll/demo1/ComponentA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo1/src/main/java/com/ll/demo1/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../demo1/src/main/java/com/ll/demo1/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo1/src/main/java/com/ll/demo1/HomeController2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../demo1/src/main/java/com/ll/demo1/HomeController2.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="32ei0hDbF1u6GHMX4LS5JqVDAG9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/gold-/Desktop/BE_Study/BE_Study/demo03",
+    "settings.editor.selected.configurable": "project.propCompiler"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gold-\Desktop\BE_Study\BE_Study\demo03" />
+      <recent name="C:\Users\gold-\Desktop\BE_Study\BE_Study\demo03\src\main\resources" />
+    </key>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="515bc86b-7727-44a0-acf9-200656c82db2" name="변경" comment="" />
+      <created>1757787218218</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757787218218</updated>
+    </task>
+    <servers />
+  </component>
+</project>
