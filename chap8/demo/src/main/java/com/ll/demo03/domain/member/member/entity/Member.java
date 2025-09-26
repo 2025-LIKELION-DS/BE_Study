@@ -1,0 +1,33 @@
+package com.ll.demo03.domain.member.member.entity;
+
+import static lombok.AccessLevel.PROTECTED;
+
+import com.ll.demo03.global.jpa.entity.BaseTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@NoArgsConstructor(access = PROTECTED)
+@AllArgsConstructor(access = PROTECTED)
+@Builder
+@Getter
+@Setter
+public class Member extends BaseTime {
+	@Column(unique = true)
+	private String username;
+	private String password;
+	private String nickname;
+	@Column(unique = true)
+	private String refreshToken;
+	//private String apiKey;
+
+	public String getName() {
+		return nickname;
+	}
+}
