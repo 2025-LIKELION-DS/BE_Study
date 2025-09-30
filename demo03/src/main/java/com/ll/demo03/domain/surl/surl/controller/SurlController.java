@@ -1,3 +1,4 @@
+
 package com.ll.demo03.domain.surl.surl.controller;
 
 import com.ll.demo03.domain.member.member.entity.Member;
@@ -8,7 +9,9 @@ import com.ll.demo03.global.rq.Rq;
 import com.ll.demo03.global.rsData.RsData;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,26 +20,30 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
+@Transactional(readOnly = true)
 public class SurlController {
+    private final SurlService surlService;
     private final Rq rq;
 
-    private final SurlService surlService;
     @GetMapping("/all")
     @ResponseBody
     public List<Surl> getAll() {
         return surlService.findAll();
     }
+
     @GetMapping("/add")
     @ResponseBody
+    @Transactional
     public RsData<Surl> add(String body, String url) {
-        Member member = rq.getMember(); //현재 브라우저로 로그인한 회원 정보 (user1, user2)
+        Member member = rq.getMember(); // 현재 브라우저로 로그인한 회원
 
         return surlService.add(member, body, url);
     }
 
-
     @GetMapping("/s/{body}/**")
     @ResponseBody
+    @Transactional
     public RsData<Surl> add(
             @PathVariable String body,
             HttpServletRequest req
@@ -51,14 +58,13 @@ public class SurlController {
 
         String[] urlBits = url.split("/", 4);
 
-        //System.out.println("Arrays.toString(urlBits) : " + Arrays.toString(urlBits));
         url = urlBits[3];
 
         return surlService.add(member, body, url);
-
     }
 
     @GetMapping("/g/{id}")
+    @Transactional
     public String go(
             @PathVariable long id
     ) {
@@ -68,5 +74,4 @@ public class SurlController {
 
         return "redirect:" + surl.getUrl();
     }
-
 }
