@@ -1,5 +1,5 @@
 server:
-  port: 8070
+  port: 8090
 spring:
   output:
     ansi:
@@ -29,6 +29,8 @@ spring:
         format_sql: true
         highlight_sql: true
         use_sql_comments: true
+springdoc:
+  default-produces-media-type: application/json
 logging:
   level:
     com.ll.demo03: DEBUG
@@ -39,4 +41,5 @@ logging:
 custom:
   site:
     name: "My Site"
-
+    accessToken:
+        expirationSec: 600
