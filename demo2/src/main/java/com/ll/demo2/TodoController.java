@@ -23,7 +23,7 @@ public class TodoController {
         return todos;
     }
 
-    @GetMapping("/detail")
+    @GetMapping("/detail") // 조회1
     public Todo getTodo(
             long id
     ) {
@@ -36,7 +36,7 @@ public class TodoController {
                 .orElse(null);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // 조회2
     public Todo getTodo2(
             @PathVariable long id
     ) {
@@ -66,7 +66,7 @@ public class TodoController {
 
     @GetMapping("/remove/{id}")
     public boolean remove(
-            @PathVariable long id
+            @PathVariable long id // URL의 일부를 변수처럼 받아서 사용
     ) {
         boolean removed = todos.removeIf((todo -> todo.getId() == id));
 

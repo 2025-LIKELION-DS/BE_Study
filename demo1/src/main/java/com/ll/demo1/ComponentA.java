@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
+@RequiredArgsConstructor //
 public class ComponentA {
     private final ComponentB componentB;
     private final ComponentC componentC;
