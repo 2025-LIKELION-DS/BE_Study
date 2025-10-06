@@ -1,85 +1,36 @@
 package com.ll.demo03.domain.surl.surl.controller;
 
 import com.ll.demo03.domain.surl.surl.entity.Surl;
-import jakarta.servlet.http.HttpServletRequest;
+import com.ll.demo03.domain.surl.surl.service.SurlService;
+import com.ll.demo03.global.exceptions.GlobalException;
+import com.ll.demo03.global.rq.Rq;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
+@Slf4j
+@Transactional(readOnly = true)
+@Tag(name = "SurlController", description = "Surl 컨트롤러")
 public class SurlController {
-    private List<Surl> surls = new ArrayList<>();
-    private long surlsLastId;
-
-    @GetMapping("/all")
-    @ResponseBody
-    public List<Surl> getAll() {
-        return surls;
-    }
-
-    @GetMapping("/add")
-    @ResponseBody
-    public Surl add(String body, String url) {
-        Surl surl = Surl
-                .builder()
-                .id(++surlsLastId)
-                .body(body)
-                .url(url)
-                .build();
-
-        surls.add(surl);
-
-        return surl;
-    }
-
-    @GetMapping("/s/{body}/**")
-    @ResponseBody
-    public Surl add(
-            @PathVariable String body,
-            HttpServletRequest req
-    ) {
-        String url = req.getRequestURI();
-
-        if ( req.getQueryString() != null ) {
-            url += "?" + req.getQueryString();
-        }
-
-        String[] urlBits = url.split("/", 4);
-
-        System.out.println("Arrays.toString(urlBits) : " + Arrays.toString(urlBits));
-
-        url = urlBits[3];
-
-        Surl surl = Surl
-                .builder()
-                .id(++surlsLastId)
-                .body(body)
-                .url(url)
-                .build();
-
-        surls.add(surl);
-
-        return surl;
-    }
+    private final SurlService surlService;
+    private final Rq rq;
 
     @GetMapping("/g/{id}")
+    @Transactional
+    @Operation(summary = "원본 URL로 리다이렉트")
     public String go(
             @PathVariable long id
     ) {
-        Surl surl = surls
-                .stream()
-                .filter(_surl -> _surl.getId() == id)
-                .findFirst()
-                .orElse(null);
+        Surl surl = surlService.findById(id).orElseThrow(GlobalException.E404::new);
 
-        if ( surl == null ) throw new RuntimeException("%d번 URL을 찾을 수 없습니다.".formatted(id));
-
-        surl.increaseCount();
+        surlService.increaseCount(surl);
 
         return "redirect:" + surl.getUrl();
     }

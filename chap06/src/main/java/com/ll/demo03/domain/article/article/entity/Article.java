@@ -1,28 +1,24 @@
 package com.ll.demo03.domain.article.article.entity;
 
+import com.ll.demo03.domain.member.member.entity.Member;
+import com.ll.demo03.global.jpa.entity.BaseTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
-import static jakarta.persistence.GenerationType.IDENTITY;
+import static lombok.AccessLevel.PROTECTED;
 
 @Entity
+@NoArgsConstructor(access = PROTECTED)
+@AllArgsConstructor(access = PROTECTED)
 @Builder
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class Article {
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    private Long id;
-    private LocalDateTime createDate;
-    private LocalDateTime modifyDate;
+public class Article extends BaseTime {
     private String title;
     @Column(columnDefinition = "TEXT")
     private String body;
+    @ManyToOne
+    private Member author;
 }

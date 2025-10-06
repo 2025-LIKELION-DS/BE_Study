@@ -1,21 +1,24 @@
 package com.ll.demo03.domain.surl.surl.entity;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ll.demo03.domain.member.member.entity.Member;
+import com.ll.demo03.global.jpa.entity.BaseTime;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import lombok.*;
 
-import java.time.LocalDateTime;
+import static lombok.AccessLevel.PROTECTED;
 
+@Entity
+@NoArgsConstructor(access = PROTECTED)
+@AllArgsConstructor(access = PROTECTED)
+@Builder
 @Getter
 @Setter
-@Builder
-public class Surl {
-    private long id;
-    @Builder.Default
-    private LocalDateTime createDate = LocalDateTime.now();
-    @Builder.Default
-    private LocalDateTime modifyDate = LocalDateTime.now();
+public class Surl extends BaseTime {
+    @JsonIgnore
+    @ManyToOne
+    private Member author;
     private String body;
     private String url;
     @Setter(AccessLevel.NONE)

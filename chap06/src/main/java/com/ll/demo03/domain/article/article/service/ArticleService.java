@@ -2,15 +2,18 @@ package com.ll.demo03.domain.article.article.service;
 
 import com.ll.demo03.domain.article.article.entity.Article;
 import com.ll.demo03.domain.article.article.repository.ArticleRepository;
+import com.ll.demo03.domain.member.member.entity.Member;
+import com.ll.demo03.global.rsData.RsData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ArticleService {
     public final ArticleRepository articleRepository;
 
@@ -18,22 +21,25 @@ public class ArticleService {
         return articleRepository.count();
     }
 
-    public Article write(String title, String body) {
+
+    @Transactional
+    public RsData<Article> write(Member author, String title, String body) {
         Article article = Article
                 .builder()
-                .createDate(LocalDateTime.now())
-                .modifyDate(LocalDateTime.now())
+                .author(author)
                 .title(title)
                 .body(body)
                 .build();
 
-        return articleRepository.save(article);
+        articleRepository.save(article);
+        return RsData.of("%d번 게시물이 작성되었습니다.".formatted(article.getId()), article);
+        // return RsData.OK; - data 가 필요 없을 때 & 단순히 메시지/상태코드만 필요할 때
     }
-
+    @Transactional
     public void delete(Article article){
         articleRepository.delete(article);
     }
-
+    @Transactional
     public Optional<Article> findById(long id) {
         return articleRepository.findById(id);
     }
